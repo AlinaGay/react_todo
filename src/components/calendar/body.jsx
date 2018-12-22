@@ -4,7 +4,7 @@ import CalendarCell  from './one_cell';
 import { getFirstDayOfMonth, getLastDay } from './fn';
 import './calendar.css';
 
-export class Calendar extends Component {
+export class CalendarBody extends Component {
 	static propTypes = {
 		handleAdd: PropTypes.func, // метод добавления напоминания  в список
 	};
@@ -23,7 +23,7 @@ export class Calendar extends Component {
 		const maximumDaysInPrevMonth = getLastDay(year, month - 1);
 		dayWeek = dayWeek === 0 ? 7 : dayWeek;
 		const firstDay = getFirstDayOfMonth(year, month);
-		const j = 1; // это счетчик недель, которые выводятся в календарь
+		let j = 1; // это счетчик недель, которые выводятся в календарь
 		let dayCounter = 1;
 		let dayCounterAfter = 1;
 		let str_out_week = [];
@@ -61,17 +61,20 @@ export class Calendar extends Component {
 					};
 				}
 				str_out.push(<CalendarCell
-					{ ...tmpCellObject }
+			    		className = {tmpCellObject.className}
+                        		dataFullDate = {tmpCellObject.dataFullDate}
+                        		dataDayMonth = {tmpCellObject.dataDayMonth}
+                        		cellText = {tmpCellObject.dataDayMonth}
+                        		handleClickCell={ null }
 				/>);
 			}
 			str_out_week.push(<tr key={ j }> { str_out }</tr>);
 			j++;
 		}
-		// printMonthHeader(yearToOperate, monthToOperate);
-		// document.getElementById('calendar_table').children[1].innerHTML = str_out_week;
+        return str_out_week;
 	}
 
 	render() {
-		return '';
+        return this.buildCalendar(2018,12);
 	}
 }

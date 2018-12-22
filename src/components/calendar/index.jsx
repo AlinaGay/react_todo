@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './calendar.css';
+import {CalendarBody} from "./body.jsx";
 
 export class Calendar extends Component {
 	static propTypes = {
@@ -40,6 +41,7 @@ export class Calendar extends Component {
 						</tr>
 						</thead>
 						<tbody>
+						<CalendarBody />
 						</tbody>
 					</table>
 					<hr />
@@ -48,7 +50,7 @@ export class Calendar extends Component {
 								type='button'
 								onClick={ null  /*'hideCalendar(event)'*/ }
 								value='Отмена'
-				        className='btn btn-sm btn-outline-secondary'
+				        		className='btn btn-sm btn-outline-secondary'
 							/>
 						</div>
 				</div>);
